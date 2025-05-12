@@ -1,0 +1,1438 @@
+/*  ----------------------------------------------------------------------------------------------------- PRECONFIGS */
+
+:root {
+  --color1: #ffbe26;
+  --color2: #e08c1d;
+  --color3: #f56a14;
+  --color4: #e03d14;
+  --color5: #ff2c29;
+}
+
+#recipe_section{
+  width: 100%;
+  margin-top: 8vh;
+}
+
+.recipe_container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  max-width: 2200px;
+}
+.makefs-media-player{
+  margin: 0%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  max-height: 1500px;
+  background-color: rgb(22, 22, 22);
+  background-image: url(../img/food-pattern-white.png);
+  background-attachment: fixed;
+  background-size: 30%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 0 4px 3px rgb(0 0 0 / 14%);
+}
+.makefs-media-player video{
+  width: 100%;
+  height: 100%;
+}
+
+.makefs-video-controls{
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 2%, rgb(0 0 0 / 69%) 95%);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 10;
+  transition: .3s;
+  justify-content: space-between;
+  padding-top: .2%;
+  padding-bottom: 1%;
+}
+.makefs-video-controls:hover{
+  opacity: 100%;
+}
+.controls-hidden{
+  opacity: 0;
+}
+.controls-showing{
+  opacity: 100%;
+}
+.first-play{
+  display: none;
+  opacity: 0;
+}
+#first-play-btn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/rvico-play.png);
+  background-size: 20vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+  border: none;
+  opacity: 100%;
+  transition: background-size .2s;
+  background-color: #000000b0;
+}
+#first-play-btn:hover{
+  cursor: pointer;
+  background-size: 25vh;
+}
+
+.in-panel-video{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.makefs-video-in-panel-video{
+  width: 25%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.makefs-video-in-panel-video:nth-child(2){
+  width: 50%;
+}
+.makefs-video-in-panel-video::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: .3s;
+}
+.makefs-video-in-panel-video:first-child:after{
+  transform: rotate(180deg);
+}
+.makefs-video-in-panel-video:nth-child(2):after{
+  background-size: 2%;
+}
+.makefs-video-in-panel-played::after{
+  background-image: url(../img/rvico-play.png);
+  animation: play-pause-animation .18s infinite alternate-reverse;
+}
+.makefs-video-in-panel-paused::after{
+  background-image: url(../img/rvico-pause.png);
+  animation: play-pause-animation .18s infinite alternate-reverse;
+}
+
+
+.makefs-video-in-panel-action::after{
+  animation: animate-play-button .5s infinite;
+  animation-duration: infinite;
+  background-image: url(../img/rvico-arrow.png);
+}
+
+.makefs-video-progress{
+  width: 99%;
+  margin: .5% 1%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: .8vh;
+  transition: .1s;
+}
+.makefs-video-progress:hover{
+  /* height: .8vh; */
+  /* margin-bottom: calc(2% - 0.25vh); */
+  cursor: pointer;
+}
+.makefs-video-progress progress{
+  width: 100%;
+  border-radius: 0;
+  height: 100%;
+  transition: .2s;
+  position: relative;
+}
+#mkfs_video_progress_select{
+  width: 100%;
+  border-radius: 0;
+  height: .5vh;
+  position: absolute;
+}
+.makefs-video-progress progress::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.61);
+  backdrop-filter: blur(2px);
+}
+.makefs-video-progress progress::-webkit-progress-value {
+  background: var(--color5);
+}
+.mkfs_video_dragable_ball, .mkfs_video_dragable_representation{
+  width: 1.2vh;
+  height: 1.2vh;
+  border-radius: 50%;
+  background-color: var(--color5);
+  position: absolute;
+  top: auto;
+  padding: 0;
+  margin: 0;
+}
+.mkfs_video_dragable_representation{
+  z-index: 1;
+  transition: opacity .2s;
+}
+.mkfs_ball_static{
+  opacity: 0;
+}
+.mkfs_ball_dragging{
+  opacity: 1;
+}
+.mkfs_video_dragable_ball{
+  opacity: 0;
+  z-index: 2;
+  cursor: move;
+}
+.makefs-video-progress:hover .mkfs_video_dragable_representation{
+  opacity: 1;
+}
+#progress-bar-time-read{
+  display: none;
+  opacity: 0%;
+  position: absolute;
+  padding: 0.5vh;
+  background-color: #000000c2;
+  box-shadow: 0px 0px 20px 2px rgb(0 0 0 / 13%);
+  color: white;
+}
+.makefs-video-control-button{
+  width: 3vh;
+  height: 3vh;
+  margin: .2% 1%;
+  border: none;
+  background-color: transparent;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: .2s;
+  filter: brightness(95%);
+}
+.makefs-video-control-button:hover{
+  cursor: pointer;
+  filter: brightness(110%);
+}
+
+.loading-obj{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: auto;
+  left: auto;
+  width: 13vh;
+  height: 13vh;
+  z-index: 10;
+  border-radius: 50%;
+  border: 1.5vh solid rgb(0 0 0 / 68%);
+  box-shadow: 0px 0px 20px 0px #00000061;
+  background: #00000036;
+  transition: .2s;
+  border-right-color: white;
+  animation: .97s loading-animation infinite;
+}
+
+.loading-obj::after{
+  content: '';
+  background-image: url(../img/rhico-chef-white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+
+.first-controls, .last-controls{
+  display: flex;
+  align-items: center;
+  width: 49%;
+}
+.first-controls{
+  margin-left: 1%;
+}
+.last-controls{
+  justify-content: flex-end;
+  color: white;
+  margin-right: 1%;
+}
+#time-counter{
+  font-size: 1.4em;
+  margin: 2% 1%;
+}
+
+/* Config styles */
+
+.config-options{
+  display: none;
+  background: #000000bd;
+  backdrop-filter: blur(3px);
+  width: 30%;
+  position: absolute;
+  height: fit-content;
+  max-width: 330px;
+}
+.makefs-video-config-menu{
+  display: flex;
+  flex-direction: column;
+  padding: 2% 0;
+}
+.makefs-video-config-menu button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 0.8em;
+  height: 4vh;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0% 4%;
+  border-bottom: 1px solid #ffffff14;
+  padding-left: 4vh;
+  background-size: 2.2vh;
+  background-repeat: no-repeat;
+  background-position-x: 3%;
+  background-position-y: center;
+  transition: .2s;
+}
+.makefs-video-config-menu button:hover{
+  cursor: pointer;
+}
+.makefs-video-config-menu button:last-child{
+  border-bottom: none;
+}
+.makefs-video-config-menu button p{
+  width: fit-content;
+}
+#speedrate p:last-child{
+  font-weight: bold;
+}
+.config-controllers-slidable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 13%;
+  height: 1.2vh;
+  border-radius: 30px;
+  background: #ffffffbf;
+  backdrop-filter: blur(3px);
+  padding: 0;
+  margin: 0;
+}
+.slidable-switch{
+  position: absolute;
+  left: -1.5%;
+  width: 1.6vh;
+  height: 1.6vh;
+  border-radius: 50%;
+  background: var(--color5);
+  transition: .2s;
+}
+
+#speedrate-options button{
+  padding: 0;
+  justify-content: center;
+}
+#makefs-video-controls-speedrate-back{
+  background-image: url(../img/video-controls/back.png);
+}
+
+#config-controllers-slidable-steps{
+  left: calc(100% - 1.6vh);
+}
+/* Config controls icons */
+#makefs-video-controls-steps{
+  background-image: url(../img/video-controls/steps.png);
+}
+#makefs-video-controls-bucle{
+  background-image: url(../img/video-controls/bucle.png);
+}
+#makefs-video-controls-speedrate{
+  background-image: url(../img/video-controls/speedrate.png);
+}
+
+/* Speedrate menu */
+#speedrate-options{
+  display: none;
+}
+
+/* Background - icons */
+#mkfv_controlls_play{
+  background-image: url(../img/video-controls/pause.png);
+}
+#mkfv_controlls_mute{
+  background-image: url(../img/video-controls/volume.png);
+}
+#mkfv_controlls_config{
+  background-image: url(../img/video-controls/config.png);
+}
+#mkfv_controlls_fullscreen{
+  background-image: url(../img/video-controls/full-screen.png);
+}
+
+/* Styling RANGE INPUT */
+
+.volume-containers{  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 127px;
+}
+#mkfv_controlls_volume, #mkfv_controlls_volume_rep{
+  display: block;
+  width: 127px;
+  position: absolute;
+  z-index: 1;
+}
+#mkfv_controlls_volume{
+  height: 70%;
+  opacity: 0;
+}
+#mkfv_controlls_volume:hover{
+  cursor: pointer;
+}
+
+#mkfv_controlls_volume:focus {
+  outline: none;
+}
+
+#mkfv_controlls_volume, #mkfv_controlls_volume_rep,
+#mkfv_controlls_volume::-webkit-slider-runnable-track, #mkfv_controlls_volume_rep::-webkit-slider-runnable-track,
+#mkfv_controlls_volume::-webkit-slider-thumb, #mkfv_controlls_volume_rep::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+#mkfv_controlls_volume::-webkit-slider-thumb, #mkfv_controlls_volume_rep::-webkit-slider-thumb{
+  background-color: white;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: -4px;
+}
+#mkfv_controlls_volume::-webkit-slider-thumb{
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px;
+  height: 20px;
+  opacity: 0%;
+}
+
+#mkfv_controlls_volume::-moz-range-thumb, #mkfv_controlls_volume_rep::-moz-range-thumb{
+  background-color: white;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+#mkfv_controlls_volume::-moz-range-thumb{
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  border-radius: 0px;
+  height: 20px;
+  opacity: 0%;
+}
+
+#mkfv_controlls_volume::-ms-thumb, #mkfv_controlls_volume_rep::-ms-thumb{
+  background-color: white;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+#mkfv_controlls_volume::-ms-thumb{
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  border-radius: 0px;
+  height: 20px;
+  opacity: 0%;
+}
+
+#mkfv_controlls_volume_rep::-webkit-slider-runnable-track{
+  background-color: rgb(255, 255, 255);
+  height: 3px;
+}
+#mkfv_controlls_volume::-webkit-slider-runnable-track{
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  height: 20px;
+  width: 100%;
+}
+
+#mkfv_controlls_volume:focus::-webkit-slider-runnable-track, #mkfv_controlls_volume_rep:focus::-webkit-slider-runnable-track{
+  outline: none;
+}
+
+#mkfv_controlls_volume::-moz-range-track,#mkfv_controlls_volume_rep::-moz-range-track {
+  background-color: white;
+  height: 3px;
+}
+#mkfv_controlls_volume::-moz-range-track{
+  display: flex;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0);
+  height: 100%;
+  width: 100%;
+}
+
+#mkfv_controlls_volume::-ms-track,#mkfv_controlls_volume_rep::-ms-track {
+  background-color: white;
+  height: 3px;
+}
+
+#mkfv_controlls_volume::-ms-track{
+  display: flex;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0);
+  height: 100%;
+  width: 100%;
+}
+
+#mkfv_controlls_volume::-ms-fill-lower,#mkfv_controlls_volume_rep::-ms-fill-lower {
+  background-color: white;
+}
+
+#mkfv_controlls_volume::-ms-fill-upper,#mkfv_controlls_volume_rep::-ms-fill-upper {
+  background-color: white;
+}
+
+/* Steps-symbolic info styles */
+
+#makefs-steps-info-button{
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50%;
+  background-image: url(../img/video-controls/steps.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: absolute;
+  top: 2.6%;
+  right: 1%;
+  z-index: 12;
+  border: none;
+  background-color: #00000024;
+  box-shadow: 0 0 6px 0px #00000038;
+  opacity: 50%;
+  transition: .1s;
+  display: flex;
+}
+#makefs-steps-info-button:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.makefs-steps-info-container{
+  scroll-behavior: smooth;
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  right: -100%;
+  backdrop-filter: blur(3px);
+  background-color: rgb(0 0 0 / 87%);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  color: white;
+  margin: 0;
+  z-index: 11;
+  transition: .2s;
+  padding: 0 0 2% 0;
+  top: 0;
+}
+.makefs-steps-info-container::-webkit-scrollbar{
+  width: .3vw;
+  border-radius: 20px;
+  background-color: rgb(43, 43, 43);
+}
+.makefs-steps-info-container::-webkit-scrollbar-track{
+  width: 3px;
+  border-radius: 20px;
+  background-color: rgb(43, 43, 43);
+}
+.makefs-steps-info-container::-webkit-scrollbar-thumb{
+  background-color: rgb(87, 87, 87);
+  border-radius: 20px;
+}
+.makefs-steps-info-container h2{
+  border-bottom: white 1px solid;
+  width: 81%;
+  padding: 5% 8%;
+  margin: 0 1% 1% 1%;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.makefs-steps-info-template{
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 15.2%;
+  max-height: 18%;
+  overflow: hidden;
+  position: relative;
+  transition: .3s;
+  margin-bottom: 5%;
+}
+.makefs-steps-info-template:hover{
+  cursor: pointer;
+}
+.makefs-steps-info-template h3{
+  width: 15%;
+  font-size: 2.7em;
+  text-align: center;
+  margin: 0;
+  border-right: 1px solid rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2.1%;
+}
+.makefs-steps-info-display-details{
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid white;
+  top: 0;
+  right: 3%;
+  margin: 2% 0 0 0;
+  width: 2vh;
+  height: 2vh;
+  display: flex;
+  font-size: 1em;
+  justify-content: center;
+  align-items: center;
+  transition: .2s;
+  transform: rotate(0deg);
+}
+.makefs-steps-info-template article{
+  width: 85%;
+  display: block;
+  padding: 0 3%;
+  height: fit-content;
+  word-break: break-all;
+}
+.makefs-steps-info-template article h4{
+  margin: 5% 0 0 0;
+  font-size: .8em;
+}
+.makefs-steps-info-template article p{
+  margin: 2% 0;
+}
+
+/* In video Anotation */
+
+.step-anotation{
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  width: 0%;
+  background-color: rgba(0, 0, 0, 0.699);
+  backdrop-filter: blur(3px);
+  color: white;
+  display: flex;
+  z-index: 13;
+  transition: .2s;
+  transition: .2s;
+  overflow: hidden;
+  min-height: 10%;
+  max-height: 18%;
+}
+#step-annotation-close{
+  position: absolute;
+  top: .5%;
+  right: .5%;
+  font-size: 1.2em;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+#step-annotation-close:hover{
+  cursor: pointer;
+}
+#step-annotation-number{
+  width: 15%;
+  font-size: 5em;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid white;
+  align-items: center;
+  margin: 1% 0px;
+}
+.step-anotation article{
+  display: none;
+  opacity: 0%;
+  padding: 1%;
+  height: fit-content;
+  transition: .5s;
+  width: 83%;
+}
+#step-annotation-minutes{
+  font-size: .8em;
+}
+#step-annotation-detail{
+  margin: 1% 0;
+}
+#step-annotation-show-more{
+  display: none;
+  position: absolute;
+  color: black;
+  border: none;
+  background-color: #ffffff;
+  right: 1.5%;
+  bottom: 5.5%;
+  box-shadow: 0 0 25px 11px black;
+  border-radius: 20px;
+  padding: .2%;
+  font-size: 1.2em;
+  z-index: 1;
+}
+#step-annotation-show-more:hover{
+  cursor: pointer;
+}
+#step-annotation-show-more-gradient{
+  display: none;
+  position: absolute;
+  width: 85%;
+  height: 19%;
+  background: black;
+  right: 0;
+  bottom: 0;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 90%) 72%);
+}
+
+/* Makefs video panels styles */
+
+.ddr-bottom-panels{
+  margin: 1%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.makefs-video-info-panels{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: fit-content;
+  position: relative;
+  padding-top: 1.2%;
+}
+.makefs-video-info-title{
+  border-bottom: 1px solid var(--color5);
+  width: 98%;
+  font-size: 1.6em;
+  height: fit-content;
+  margin: 0%;
+  margin-bottom: 1%;
+  padding-bottom: 1%;
+}
+.makefs-video-info-chef{
+  height: 10vh;
+  width: 12%;
+  display: flex;
+  text-decoration: none;
+}
+.makefs-video-info-chef article p{
+  text-decoration: none;
+}
+.makefs-video-info-chef img{
+  width: 10vh;
+  height: 10vh;
+  margin-right: 3%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px 0px #0000005c;
+}
+.makefs-video-info-chef article{
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.makefs-video-info-chef article p{
+  margin: 3% 0;
+}
+.makefs-video-info-chef article p:first-child{
+  font-weight: bold;
+  margin: 0%;
+}
+#follow-button{
+  border: none;
+  border-radius: 0px;
+  color: white;
+  background-color: var(--color5);
+  width: 6.2vw;
+  transition: .2s;
+  height: 3vh;
+}
+#follow-button:hover{
+  cursor: pointer;
+}
+
+.makefs-video-interactions{
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  align-items: flex-end;
+  padding-right: 2%;
+}
+
+.makefs-video-interactions p{
+  text-align: end;
+  margin: .5% 1.5%;
+  font-size: 1.3em;
+}
+.makefs-video-star-valoration{
+  padding: 0;
+  width: 100%;
+  display: flex;
+  margin: 0%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.makefs-video-star-valoration li{
+  width: 3.5vh;
+  height: 3.5vh;
+  background: transparent;
+  background-image: url(../img/video-controls/star-empty.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  border-radius: 50%;
+}
+.makefs-video-star-valoration li button{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.makefs-video-report-save{
+  width: fit-content;
+  display: flex;
+  height: 4vh;
+}
+.makefs-video-report-save button{
+  width: fit-content;
+  margin: .5%;
+  border: 2px solid var(--color5);
+  color: var(--color5);
+  background: transparent;
+  transition: .2s;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 0.8em;
+}
+.makefs-video-report-save button:hover{
+  color: white;
+  background: var(--color5);
+  cursor: pointer;
+}
+
+/* makefs-recommended-panels styles*/
+.makefs-recommended-panels{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3% 0;
+}
+
+.in-recipe-recommended-container{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 8vh;
+  height: fit-content;
+}
+.in-video-template{
+  height: 28vh;
+}
+.recomended-title{
+  color: var(--color5);
+  text-transform: uppercase;
+  text-align: start;
+  margin: 1%;
+  width: 95.5%;
+  margin-left: 2%;
+  border-bottom: 1px solid;
+  padding-bottom: 1%;
+}
+/* Tags  Style*/
+.makes-recipe-tags-wrapper{
+  width: 98%;
+  display: flex;
+  position: absolute;
+  justify-content: flex-start;
+  top: -7%;
+}
+
+.makes-recipe-tags-wrapper .makefs-recipe-tag{
+  font-size: 0.7em;
+  padding: 0% 1.2%;
+  margin: .5% .2%;
+  color: white;
+  background-color: var(--color5);
+  border-radius: 20px;
+  height: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ingredients Tags */
+.makefs-video-ingredients-ad-wrapper{
+  width: 30%;
+  box-shadow: 0 0 20px 0px #ff2c296b;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  margin-top: 2.8%;
+}
+.makefs-ingredients-tittle{
+  color: var(--color5);
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  width: 88%;
+  padding-bottom: 2%;
+  margin: 6% 0 0 0;
+}
+.makefs-ingredients-wrapper{
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 6%;
+}
+.makefs-ingredient{
+  width: 41%;
+  margin: 1%;
+  min-height: 4vh;
+  border: 1px solid;
+  color: var(--color5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 1% 2%;
+  text-align: center;
+  word-break: break-all;
+}
+.makefs-video-info-chef .verified2{
+  position: relative;
+  width: 3.5vh ;
+  height: 3.5vh ;
+  top: -110% ;
+  left: -1% ;
+}
+#foto-chef-ddr{
+  width: 10vh;
+}
+
+.loading-rate-action{
+  width: calc(3.5vh * 5);
+  height: 3.5vh;
+  position: absolute;
+  top: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.loading-rate-action::after{
+  content: "";
+  position: absolute;
+  top: auto;
+  left: auto;
+  background: url(../iconos/loading.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  width: 2.5vh;
+  height: 2.5vh;
+  background-color: #ff2c29;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px #ff3d3a;
+  animation: loading-animation infinite .5s;
+}
+
+#followUnloged{
+  border: none;
+  border-radius: 0px;
+  color: white;
+  background-color: var(--color5);
+  width: 6.2vw;
+  transition: .2s;
+  height: 3vh;
+  z-index: 5;
+  cursor: pointer;
+}
+#unlogedFollowSect{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.349);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  opacity: 0;
+  z-index: 10;
+  transition: .3s;
+}
+
+#unlogedFollowDiv{
+  width: 45%;
+  height: 25vh;
+  display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ background-color: white;
+ text-align: center;
+ border-radius: 15px;
+}
+
+#unlogedFollowDiv h4{
+  width: 100%;
+  padding: 2vh 0;
+  background-color: #FF2C29;
+  color: white;
+  font-size: 1.2em;
+}
+
+#logRedirect{
+  width: 60%;
+  height: 5vh;
+  border: none;
+  background: #ff2c29;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 1px #ff2c295c;
+  cursor: pointer;
+}
+
+#close-UnlogedFollow{
+  position: fixed;
+  background-color: transparent;
+  border: none;
+  width: 6vh;
+  height: 6vh;
+  top: 12vh;
+  right: 5vh;
+  margin: 0%;
+  transition: .2s;
+  background-image: url(../img/closeUpdateInfo.png);
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: var(--color5);
+  z-index: 2;
+  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+  cursor: pointer;
+}
+
+.ddr-recipe{
+  width: 47%;
+}
+
+/* Video Animations */
+@keyframes loading-animation {
+  0%{
+    transform: rotate(0deg);
+  }100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes animate-play-button{
+  0%{
+    background-size: 20%;
+    opacity: 90%;
+  }
+  50%{
+    background-size: 40%;
+    opacity: 50%;
+  }
+  100%{
+    background-size: 20%;
+    opacity: 0%;
+  }
+}
+@keyframes play-pause-animation{
+  0%{
+    background-size: 20%;
+    opacity: 100%;
+  }
+  /* 50%{
+    background-size: 32%;
+  } */
+  100%{
+    background-size: 30%;
+    opacity: 30%;
+  }
+}
+
+@keyframes config-button {
+  0%{
+    background-color: #ffffff45;
+  }
+  100%{
+    background-color: transparent;
+  }
+}
+/*----Responsive----*/
+@media(max-width: 1510px){
+  #follow-button{
+    width: 12.2vw;
+  }
+  #followUnloged{
+    width: 12.2vw ;
+  }
+}
+@media (max-width:970px){
+  .makefs-steps-info-container{
+    width: 80%;
+  }
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    margin: 5% .2%;
+  }
+  .makefs-video-info.chef{
+    margin-top: 2vh;
+  }
+  .makefs-recommended-panels{
+    width: 100%;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .makefs-video-ingredients-ad-wrapper{
+    width: 100%;
+  }
+  .in-video-template{
+    height: 35vh;
+  }
+  #follow-button{
+    width: 24vw !important;
+  }
+  #followUnloged{
+    width: 24vw !important;
+  }
+  .makefs-video-info-title{
+    margin-top: 6vh;
+  }
+  .in-recipe-recommended-container{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width:450px){
+  .ddr-recipe{
+    width: 90%;
+  }
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    width: 26%;
+    right: 0;
+    margin: 3% .2%;
+  }
+  .makefs-steps-info-container{
+    width: 100%;
+  }
+  .makefs-media-player{
+    height: 35vh;
+  }
+  .makefs-video-info-chef{
+    width: 50%;
+    align-items: flex-start;
+  }
+  .makefs-video-info-chef  #foto-chef-ddr{
+    position: relative;
+    width: 7vh;
+  }
+  .makefs-video-info-chef  #foto-chef-ddr{
+    position: relative;
+    width: 7vh;
+  }
+  .makefs-video-info-chef img{
+    width: 7vh;
+    height: 7vh;
+  }
+  .makefs-video-info-chef .verified2{
+    position: absolute;
+    width: 2.5vh;
+    height: 2.5vh;
+    top: -8%;
+  }
+  #usernameSection, .seguidoresp{
+    font-size: 0.8em;
+  }
+  #follow-button{
+    height: 2.5vh!important;
+    font-size: 0.9em;
+  }
+  .makefs-video-info-title{
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+  }
+  .makefs-video-star-valoration{
+    align-items: center;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .makefs-video-interactions{
+    width: 40%;
+    justify-content: start;
+  }
+  .makefs-video-interactions .viewp {
+    font-size: 1em;
+  }
+  #save-actual-recipe, #report-actual-recipe, .makefs-video-report-save {
+    height: 3vh;
+  }
+  .makefs-video-into-chef{
+    width: 100%;
+  }
+  #follow-button{
+    width: 50vw;
+  }
+  #followUnloged{
+    width: 50vw ;
+  }
+  #step-annotation-number{
+    font-size: 3em;
+  }
+  #step-annotation-show-more{
+    padding: .2% 1%;
+    font-size: .7em;
+  }
+}
+
+@media(min-width: 810px){
+  .makefs-recipe-tag{
+    width: fit-content;
+  }
+}
+@media(max-width: 810px){
+  .makefs-video-config-menu button {
+    height: 7vh;
+    background-size: 3.2vh;
+    padding-left: 7vh;
+  }
+}
+@media(max-width: 450px){
+  .step-anotation{
+    min-height: 28%;
+    max-height: 32%;
+  }
+  .config-options {
+    max-width: none;
+    height: 35vh;
+    width: 100vw;
+    top: -25vh;
+  }
+  #speedrate-options{
+    flex-flow: row wrap;
+  }
+  #speedrate-options .makefs-video-controls-speedrate{
+    padding: 0;
+    width: 33%;
+    height: 6.6vh;
+    justify-content: center;
+  }
+  #speedrate-options .makefs-video-controls-speedrate:last-child{
+    border-bottom: 1px solid #ffffff14;
+    width: 50%;
+  }
+  #speedrate-options .makefs-video-controls-speedrate:nth-child(8){
+    border-bottom: 1px solid #ffffff14;
+    width: 50%;
+  }
+}
+@media(max-width: 450px){
+  .step-anotation{
+    min-height: 28%;
+    max-height: 32%;
+  }
+}
+
+@media(max-width: 370px){
+  .makefs-video-info-title{
+    margin-bottom: 1vh;
+    text-align: center;
+    width: 100%;
+  }
+  .makefs-video-info-chef{
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    order: 3;
+  }
+  .makefs-video-interactions{
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5%;
+    border-bottom: 1px solid var(--color5);
+    padding: 0;
+    padding-bottom: 5%;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .makefs-video-report-save{
+    width: 100%;
+    height: 5vh;
+    order: 3;
+    justify-content: center;
+  }
+  #report-actual-recipe, #save-actual-recipe{
+    height: 5vh;
+    width: 48%;
+  }
+  .viewp {
+    width: 40%;
+    margin: 1.5% 0%;
+  }
+  .makefs-video-star-valoration{
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 50%;
+  }
+  .makes-recipe-tags-wrapper{
+    top: -3%;
+    justify-content: center;
+  }
+  .makefs-recipe-tag{
+    width: 30%;
+  }
+  .makefs-video-info-chef{
+    border-bottom: 1px solid var(--color5);
+    padding-bottom: 5%;
+  }
+  .makefs-video-info-chef  #foto-chef-ddr{
+    position: relative;
+    width: 10vh;
+  }
+  .makefs-video-info-chef img{
+    width: 10vh;
+    height: 10vh;
+  }
+  .makefs-video-info-chef .verified2{
+    position: absolute;
+    width: 3.5vh;
+    height: 3.5vh;
+    top: -8%;
+  }
+  .makefs-video-info-title{
+    padding-bottom: 4%;
+  }
+  #usernameSection{
+    font-size: 1.5em;
+  }
+}
+
+@media (max-height:810px){
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    height: 2.5vh;
+    width: 18%;
+  }
+  .makefs-video-report-save button{
+    width: 60%;
+  }
+  #follow-button{
+    height: 5vh;
+  }
+  #followUnloged{
+    height: 5vh ;
+  }
+  
+}
+@media (max-height:810px) and (max-width:970px){
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    height: 2.5vh;
+    width: 27%;
+  }
+}
+@media (min-width:970px){
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    width: fit-content;
+  }
+}
+@media (max-height:484px){
+  .makes-recipe-tags-wrapper .makefs-recipe-tag{
+    height: 3vh;
+    width: 16%;
+  }
+}
+@media (max-height:450px){
+  .step-anotation{
+    min-height: 28%;
+    max-height: 32%;
+  }
+  .config-options {
+    max-width: none;
+    height: 35vh;
+    width: 50vw;
+    top: -25vh;
+  }
+  .makefs-video-config-menu button {
+    height: 9vh;
+    background-size: 4.2vh;
+  }
+  #speedrate-options{
+    flex-flow: row wrap;
+  }
+  #speedrate-options .makefs-video-controls-speedrate{
+    padding: 0;
+    width: 33%;
+    height: 6.6vh;
+    justify-content: center;
+  }
+  #speedrate-options .makefs-video-controls-speedrate:last-child{
+    border-bottom: 1px solid #ffffff14;
+    width: 50%;
+  }
+  #speedrate-options .makefs-video-controls-speedrate:nth-child(8){
+    border-bottom: 1px solid #ffffff14;
+    width: 50%;
+  }
+}
+  
+.footer{
+  margin-top: 0!important;
+}

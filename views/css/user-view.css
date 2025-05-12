@@ -1,0 +1,932 @@
+/*  ----------------------------------------------------------------------------------------------------- PRECONFIGS */
+
+:root{
+    --color1: #FFBE26;
+    --color2: #E08C1D;
+    --color3: #F56A14;
+    --color4: #E03D14;
+    --color5: #FF2C29;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+section{
+    margin: auto;
+    max-width: none;
+}
+
+.makefsContainer{
+    height: fit-content;
+    width: 100%;
+    max-width: 2000px;
+    
+}
+
+/*----------------------------------------------Section User-view*/
+
+.userContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#chef-view{
+    height: fit-content;
+    width: 100%;
+    max-height: 2500px;
+    text-align: center;
+}   
+
+/*------------------------------------------------------------------------Contenedor User*/
+#userNoChefContainer{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10vh;
+}
+.profile-pic-user {
+    position: relative;
+    width: 35vh;
+    height: 35vh;
+    object-fit: cover;
+    margin: 0;
+    padding: 0.5%;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 27%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    min-width: 247px;
+    min-height: 252px;
+}
+.verified-user {
+    position: absolute;
+    width: 6vh;
+    height: 6vh;
+    display: flex;
+    top: 5%;
+    right: 5%;
+}
+.profile-pic-img-user {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+.divUser-view{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#firstdiv{
+    height: fit-content;
+    justify-content: space-between;
+}
+#importantInfoUser{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-chars-user {
+    width: 62%;
+    height: fit-content;
+    color: var(--color5);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+#user-name {
+    color: var(--color5);
+    font-size: 3.3em;
+    margin: 0%;
+
+}
+.description-user{
+    padding-top: 1vh;
+    font-size: 1.2em;
+    border-top: var(--color5) 2px solid;
+    width: 100%;
+    margin-bottom: 0;
+}
+#username-space{
+    margin: 0;
+}
+.importantDataUser{
+    height: fit-content;
+    align-items: flex-start;
+}
+#socialMediaUser{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.socialmediadiv{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.socialmediadiv img{
+    height: 7vh;
+}
+.socialmediadiv input{
+    overflow: visible;
+    border: none;
+    background: #FF2C29;
+    padding: 1.5vh;
+    border-radius: 0 10px 10px;
+    color: white;
+}
+.socialmediadiv input:focus{
+    outline: none;
+}
+.socialmediadiv input::placeholder{
+    color: rgb(255, 255, 255);
+}
+
+#infoData-User{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.divInfoData-user{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#input-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.infodelusuario{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2%;
+}
+.infodelusuario label{
+    border: 2px solid #FF2C29;
+    border-right: none;
+    padding: 1.5vh;
+}
+#input-info input{
+    width: 90%;
+    overflow: visible;
+    border: none;
+    padding: 1.5vh;
+    border: 2px solid #FF2C29;
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+    color: #FF2C29;
+    font-weight: bolder;
+}
+#input-info input:focus{
+    outline: none;
+}
+#tittle-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#tittle-info h2{
+    margin: 0;
+    padding-right: 20%;
+    font-size: 2.5em;
+    margin-bottom: 2vh;
+    color: #FF2C29;
+    border-bottom: 2px solid #FF2C29;
+    
+}
+.do-chef{
+    width: 90%;
+    overflow: visible;
+    border: none;
+    background: #FF2C29;
+    padding: 2vh;
+    border-radius: 10px;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-bottom: 2%;
+}
+#profile-edit-user {
+    cursor: pointer;
+    border: none;
+    width: 5vh;
+    height: 5vh;
+    background-image: url(../img/chef-edit.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 24%);
+}
+.do-chef:hover{
+    background: white;
+    color: var(--color5);
+    font-weight: bolder;
+    outline: 2px solid #FF2C29;
+    border-radius: 10px;
+}
+#updateInfo input{
+    width: 100%;
+    overflow: visible;
+    border: none;
+    background: #FF2C29;
+    padding: 1.5vh;
+    border-radius:10px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+#updateInfo input:hover{
+    background: white;
+    color: var(--color5);
+    font-weight: bolder;
+    outline: 2px solid #FF2C29;
+    border-radius: 10px;
+    
+}
+#profile-edit{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    width: 6vh;
+    height: 6vh;
+    bottom: 5%;
+    right: 5%;
+    margin: 0%;
+    transition: .2s;
+    background-image: url(../img/photoChange.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+    cursor: pointer;
+}
+
+/*----------------------------------------CHANGE FOTO*/
+
+#cambiarFoto{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.335);
+    display: none;
+    opacity: 0;
+    transition: .3s;
+    left: 0;
+    top: 0;
+}
+
+#fotoChange{
+    width: 30%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
+}
+
+.updateFotoInput::-webkit-file-upload-button {
+    display: none;
+}
+
+.updateFotoInput{
+    width: 65%;
+    border: 2px solid #FF2C29;
+    border-radius: 10px;
+    padding: 2.5vh 0 2.5vh 20%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;   
+}
+.updateFotoInput::before {
+    content: '';
+    display: inline-block;
+    background: #FF2C29;
+    color: white;
+    border-right: 2px solid #FF2C29;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: .5s;
+    height: 100%;
+    width: 17%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-image: url(../iconos/camera.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+}
+#submitFoto{
+    margin-top: 4%;
+    width: 90%;
+    overflow: visible;
+    border: none;
+    background: #FF2C29;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 2.5vh 0;
+    padding-left: 2%;
+    background-position-y: center;
+    background-position-x: 95%;
+    background-repeat: no-repeat;
+    background-image: url(../iconos/cloud-upload.png);
+    background-size: 10%;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#profile-edit-close-chef{
+    position: fixed;
+    background-color: transparent;
+    border: none;
+    width: 6vh;
+    height: 6vh;
+    top: 12vh;
+    right: 5vh;
+    margin: 0%;
+    transition: .2s;
+    background-image: url(../img/closeUpdateInfo.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+    cursor: pointer;
+}
+#profile-delete-account{
+    cursor: pointer;
+    border: none;
+    width: 5vh;
+    height: 5vh;
+    background-image: url(../img/deleteAccount.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 24%);
+}
+/*--------------------------------------------------------------------Change pass*/
+
+#cambiarPass{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.335);
+    color: var(--color5);
+    display: none;
+    opacity: 0;
+    transition: .3s;
+    left: 0;
+}
+
+#passChange{
+    width: 40%;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
+}
+#passChange h2{
+    width: 100%;
+    background-color: #FF2C29;
+    color: white;
+    font-size: 2em;
+    padding: 4% 0;
+}
+
+.passInput{
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #FF2C29;
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    color: #FF2C29;
+    
+}
+#changePassSend:hover{
+    background-color: #FF2C29;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.passInput input:focus{
+    outline: none;
+}
+
+
+#profile-close-passChange{
+    position: fixed;
+    background-color: transparent;
+    border: none;
+    width: 6vh;
+    height: 6vh;
+    top: 12vh;
+    right: 5vh;
+    margin: 0%;
+    transition: .2s;
+    background-image: url(../img/closeUpdateInfo.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+    cursor: pointer;
+}
+
+/*-------------------------------------------------------------Borrar cuenta*/
+
+#deleteAccountContainer{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.335);
+    color: var(--color5);
+    display: none;
+    opacity: 0;
+    transition: .3s;
+    left: 0;
+}
+#deleteAccount{
+    background-color: white;
+    width: 40%;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
+}
+#deleteAccount h3{
+    margin: 2%;
+}
+#deleteAccount h2{
+    width: 100%;
+    background-color: #FF2C29;
+    color: white;
+    font-size: 2em;
+    padding: 4% 0;
+    margin: 0;
+}
+
+.passInput{
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #FF2C29;
+    background-color: white;
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    color: #FF2C29;
+}
+#deleteAccountbtn:hover{
+    background-color: #FF2C29;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.passInput input:focus{
+    outline: none;
+}
+
+
+#profile-close-deleteAccount{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    width: 6vh;
+    height: 6vh;
+    top: 12vh;
+    right: 5vh;
+    margin: 0%;
+    transition: .2s;
+    background-image: url(../img/closeUpdateInfo.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+    cursor: pointer;
+}
+.editbtninfo{
+    display: flex;
+    flex-direction: row;
+}
+/*-----------------------------------------------------------------Begin a Chef*/
+
+#beaChef{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.281);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    color: white;
+    display: none;
+    opacity: 0;
+    transition: .3s;
+}
+#beaChef p{
+    margin: 0 ;
+}
+#profile-close-bechef{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    width: 6vh;
+    height: 6vh;
+    top: 12vh;
+    right: 5vh;
+    margin: 0%;
+    transition: .2s;
+    background-image: url(../img/closeUpdateInfo.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: var(--color5);
+    z-index: 2;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.235);
+    cursor: pointer;
+}
+#beChefContainer{
+    width: 55%;
+    height: 75vh;
+    background-color: var(--color5);
+    border-radius: 15px;
+    box-shadow: white 2px 2px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#tittleBeChef{
+    width: 100%;
+    height: 16%;
+    margin-top: 2%;
+    background-color: white;
+    color: var(--color5);
+    font-variant: bolder;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#subtittleBeChef{
+    width: 70%;
+    height: 12%;
+    border-bottom: 2px solid white;
+}
+#makefsContract{
+    margin-top: 2%;
+    width: 70%;
+    height: 38%;
+    text-align: left; 
+    font-size: 1.4em;
+    line-height: 2em;  
+}
+#divBtnBeChef{
+    width: 70%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#msgVidContract{
+    width: 50%;
+    height: 10%;
+    font-size: 0.7em;
+}
+
+#divBtnBeChef button{
+    width: 50%;
+    height: 90%;
+    font-size: 1.2em;
+    border: 2px solid white;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.235);
+    transition: .3s;
+    cursor: pointer;
+}
+#divBtnBeChef button:hover{
+    padding-left: 3%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.589)
+}
+#divBtnBeChef button img{
+    width: 4vh;
+}
+
+/*-----Responsive-----*/
+@media (max-width:1300px){
+    #beChefContainer{
+        width: 78%;
+    }
+    #msgVidContract{
+        height: 5%;
+        margin-top: 3vh;
+    }
+}
+@media (max-width:1050px){
+    #tittle-info h2{
+        width: 82%;
+        padding-right: 0;
+    }
+    .profile-pic-user{
+        width: 30vh;
+        height: 30vh;
+    }
+    .divUser-view{
+        display: flex;
+        padding-bottom: 4vh;
+    }
+    #firstdiv{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5vh;
+    }
+    #cambiarPass{
+        height: 122vh;
+        top: -28vh;
+    }
+    #cambiarFoto{
+        height: 122vh;
+        top: -28vh;
+    }
+}
+@media (max-width:822px){
+    #beChefContainer{
+        width: 100%;
+    }
+    #profile-close-bechef{
+        right: 1%;
+        top: 9vh;
+    }
+}
+@media (max-width:800px){
+    #infoData-User{
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+    .divUser-view{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    #socialMediaUser{
+        width: 70%;
+        padding: 0 0 13vh 0;
+    }
+    #firstdiv{
+        margin-top: 5vh;
+    }
+    #cambiarPass{
+        height: 150vh;
+    }
+    #passChange{
+        width: 100%;
+    }
+    #cambiarFoto{
+        height: 150vh;
+    }
+    #fotoChange{
+        width: 80%;
+    }
+
+}
+@media (max-width:640px){
+    #makefsContract{
+        width: 90%;
+    }
+    #makefsContract p{
+        font-size: 0.7em;
+    }
+    #subtittleBeChef{
+        width: 90%;
+    }
+    #msgVidContract{
+        width: 100%;
+    }
+    #deleteAccount{
+        width: 100%;
+    }
+}
+@media (max-width:505px){
+    #firstdiv{
+        margin-top: 5vh;
+    }
+}
+@media (max-width:485px){
+    .divInfoData-user{
+        display: flex;
+        flex-direction: column; 
+    }
+    #tittle-info h2{
+        width: 100%;
+        margin: 11vh 0 0 0;
+    }
+    .editbtninfo{
+        margin: 5% 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #profile-delete-account{
+        margin: 0 6%;
+    }
+    #cambiarPass{
+        height: 166vh;
+    }
+    #cambiarFoto{
+        height: 166vh;
+    }
+    #makefsContract{
+        overflow: scroll;
+    }
+}
+@media (max-width:372px){
+    .divUser-view{
+        padding-bottom: 4vh;
+    }
+    #socialMediaUser{
+        margin: 5vh 0 0 0;
+    }
+    #firstdiv{
+        margin-top: 6vh;
+    }
+    #infoData-User{
+        width: 100%;
+        margin: 0vh 0 3vh 0;
+    }
+    #msgVidContract{
+        width: 100%;
+    }
+    #tittleBeChef h1{
+        font-size: 1.5em;
+    }
+    .warningh3{
+        font-size: 1em !important;
+    }
+    #divBtnBeChef{
+        width: 100%;
+    }
+}
+@media (max-width:300px){
+    #cambiarPass{
+        width: 107%;
+    }
+    #passChange{
+        width: 93%;
+    }
+    #cambiarFoto{
+        width: 107%;
+    }
+    #fotoChange{
+        width: 93%;
+    }
+}
+/*-----Responsive height-----*/
+@media (max-height:850px){
+    #passChange{
+        height:52vh;
+    }
+}
+@media (max-height:800px){
+    #socialMediaUser{
+        padding: 5vh 0 13vh 0;
+    }
+    .divUser-view{
+        padding-bottom: 4vh;
+    }
+    #firstdiv{
+        margin-top: 5vh;
+    }
+    #divBtnBeChef button{
+        font-size: 1em;
+    }
+    #makefsContract{
+        overflow-y:scroll;
+    }
+}
+@media (max-height:680px){
+    #deleteAccount{
+        height: 55vh;
+    }
+}
+@media (max-height:680px){
+    #firstdiv{
+        margin-top: 5vh;
+    }
+    #passChange{
+        height:61vh;
+    }
+}
+@media (max-height:780px){
+    #cambiarPass{
+        top: -45vh;
+        height: 187vh;
+    }
+    #passChange{
+        height: 48vh;
+    }
+    #cambiarFoto{
+        top: -45vh;
+        height: 187vh;
+    }
+    #fotoChange{
+        height: 48vh;
+    }
+}
+@media (max-height:680px){
+    #cambiarPass{
+        top: -62vh;
+        height: 220vh;
+    }
+    #cambiarFoto{
+        top: -62vh;
+        height: 220vh;
+    }
+    .warningh3{
+        margin-top: 0.5vh;
+    }
+}
+@media (max-height:640px){
+    #socialMediaUser{
+        padding: 5vh 0 13vh 0;
+    }
+    .divUser-view{
+        padding-bottom: 4vh;
+    }
+    #firstdiv{
+        margin-top: 5vh;
+    }
+}

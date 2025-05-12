@@ -1,0 +1,2 @@
+Sitemap: https//:makefs.site/sitemap.xml
+Sitemap: /sitemap.xml

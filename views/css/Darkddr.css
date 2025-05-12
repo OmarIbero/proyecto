@@ -1,0 +1,90 @@
+/*--Dark--*/
+.DarkModeBody{
+    background-color:#100f0f;
+}
+.DarkModeP{
+    color:white;
+}
+.Darktitlevideo{
+    color:white;
+}
+.Darkusername{
+    color:white;
+}
+.Darkfollow{
+    color:white;
+}
+.Darkview{
+    color:white;
+}
+.darkpseg{
+    color:white;
+}
+.Darkviewp{
+    color:white;
+}
+.DarkStar{
+    background-color:#100f0f;
+}
+.DarkNotif{
+    box-shadow: 0px 0px 20px 1px #ff2c295c;
+}
+.Darkindice{
+    background-color: #100f0f;
+    border: 1px solid #ffffff;
+    color:white;
+}
+.DarkModesubCategories{
+    background-color: rgba(0, 0, 0, 0);
+}
+.DarkModeCategories{
+    background-color: rgba(0, 0, 0, 0);
+}
+.DarkBtnDown{
+    background-color: #100f0f;
+}
+/*--White--*/
+.White{
+    background-color:white;
+}
+.WhiteModeP{
+    color:black;
+}
+.Whitetitlevideo{
+    color:black;
+}
+.Whiteusername{
+    color:black;
+}
+.Whitefollow{
+    color:black;
+}
+.Whiteview{
+    color:black;
+}
+.whitepseg{
+    color:black;
+}
+.Whiteviewp{
+    color:black;
+}
+.WhiteStar{
+    background-color:white;
+}
+.WhiteNotif{
+    filter:invert(0);
+}
+.WhiteModesubCategories{
+    background-color: rgb(255, 255, 255);
+}
+.Whiteindice{
+    background-color: white;
+    border: 1px solid #FF2C29;
+    color: #FF2C29;
+}
+.WhiteModeCategories{
+    background-color: rgb(255, 255, 255);
+}
+.WhiteBtnDown{
+    background-color:white;
+}
